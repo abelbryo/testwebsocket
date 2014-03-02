@@ -1,6 +1,6 @@
-@(implicit request: RequestHeader)
+@(implicit request: RequestHeader) (implicit lang: Lang)
 
-@main("Server Status") {
+@main(Messages("application.name")) {
     <script type="text/javascript">
         $(function(){
             var ws = new WebSocket("@routes.Application.statusFeed.webSocketURL()")
