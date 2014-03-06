@@ -7,6 +7,7 @@
 
             ws.onmessage = function(msg){
                 $('#load-average').text(msg.data);
+                // ws.send("Just received " + new Date() +"--" + msg.data);
             }
         });
     </script>

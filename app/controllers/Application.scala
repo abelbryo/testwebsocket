@@ -14,7 +14,7 @@ import scala.language.postfixOps
 
 object Application extends Controller {
 
-  def index = WebSocket.using[String] { request =>
+  def index = WebSocket.using[String] { implicit request =>
     val in = Iteratee.foreach[String](println).map { msg =>
       println(msg)
     }
@@ -36,7 +36,10 @@ object Application extends Controller {
         .getSystemLoadAverage()
     }
 
-    val in = Iteratee.ignore[String]
+    // val in = Iteratee.ignore[String]
+    val in = Iteratee.foreach[String](println).map {
+        msg => println(msg)
+    }
     val out = Enumerator.repeatM {
       Promise.timeout(getLoadAverage, 3 seconds)
     }
